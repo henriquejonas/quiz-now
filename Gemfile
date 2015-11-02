@@ -7,6 +7,9 @@ gem 'rails', '4.1.4'
 # https://github.com/brianmario/mysql2
 gem 'mysql2', '~> 0.3.18'
 
+# Cliente PostgreSQL
+gem 'pg'
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'
 
