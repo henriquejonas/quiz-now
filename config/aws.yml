@@ -1,0 +1,11 @@
+development:
+  access_key_id: AKIAISCBXDZ53R3QXONA
+  secret_access_key: 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
+
+test:
+  access_key_id: AKIAISCBXDZ53R3QXONA
+  secret_access_key: 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
+
+production:
+  access_key_id: AKIAISCBXDZ53R3QXONA
+  secret_access_key: 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

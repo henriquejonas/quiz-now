@@ -8,6 +8,7 @@ class Category < ActiveRecord::Base
 
 	#== Validations
 	validates_presence_of :name
+  validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
 	
 end
 

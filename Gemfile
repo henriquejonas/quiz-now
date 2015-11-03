@@ -15,8 +15,8 @@ gem 'jbuilder', '~> 2.0'
 
 gem 'activeadmin', '~> 1.0.0.pre1'
 gem 'devise'
-gem 'paperclip'
-gem 'aws'
+gem 'paperclip', '~> 4.3'
+gem 'aws-sdk', '< 2.0'
 gem 'annotate'
 
 group :development do
