@@ -10,6 +10,10 @@ class Question < ActiveRecord::Base
 
   #== Validations
   validates_presence_of :question, :category
+
+  def to_s
+  	question.truncate(100)
+  end
   
 end
 

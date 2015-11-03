@@ -7,7 +7,7 @@ pt-BR:
     attributes:
       answer:
         id: Identificador
-        text: Opção
+        answer: Opção de Resposta
         image: Imagem
         question: Questão
         order: Ordem

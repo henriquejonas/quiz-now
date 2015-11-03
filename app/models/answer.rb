@@ -7,7 +7,12 @@ class Answer < ActiveRecord::Base
   has_attached_file :image
 
   #== Validations
-  validates_presence_of :question, :order, :text
+  validates_presence_of :question, :order, :answer
+
+  #== Callbacks
+  after_initialize do
+  	self.order ||= 1
+  end
   
 end
 

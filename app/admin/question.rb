@@ -40,5 +40,4 @@ ActiveAdmin.register Question do
     f.actions
   end
 
-
 end
