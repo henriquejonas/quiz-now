@@ -15,6 +15,9 @@ gem 'jbuilder', '~> 2.0'
 
 gem 'activeadmin', '~> 1.0.0.pre1'
 gem 'devise'
+gem 'paperclip'
+gem 'aws'
+gem 'annotate'
 
 group :development do
   gem 'spring'

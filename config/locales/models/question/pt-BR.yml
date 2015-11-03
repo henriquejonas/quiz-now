@@ -1,0 +1,15 @@
+pt-BR:
+  activerecord:
+    models:
+      question: 
+        one: Questão
+        other: Questões
+    attributes:
+      question:
+        id: Identificador
+        text: Questão
+        image: Recurso de Imagem
+        category: Categoria
+        reference: Referência
+        created_at: Criado em
+        updated_at: Atualizado em

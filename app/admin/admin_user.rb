@@ -1,4 +1,5 @@
 ActiveAdmin.register AdminUser do
+  #== Strong parameters
   permit_params :email, :password, :password_confirmation
 
   index do

@@ -1,0 +1,14 @@
+pt-BR:
+  activerecord:
+    models:
+      category: 
+        one: Categoria
+        other: Categorias
+    attributes:
+      category:
+        id: Identificador
+        name: Categoria
+        questions: Questões
+        image: Imagem
+        created_at: Criado em
+        updated_at: Atualizado em
