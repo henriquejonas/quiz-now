@@ -7,9 +7,10 @@ pt-BR:
     attributes:
       question:
         id: Identificador
-        text: Questão
+        question: Questão
         image: Recurso de Imagem
         category: Categoria
+        category_id: Categoria
         reference: Referência
         created_at: Criado em
         updated_at: Atualizado em

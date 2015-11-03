@@ -9,7 +9,7 @@ class Question < ActiveRecord::Base
   has_attached_file :image
 
   #== Validations
-  validates_presence_of :text, :category
+  validates_presence_of :question, :category
   
 end
 
