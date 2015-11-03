@@ -4,7 +4,7 @@ class Category < ActiveRecord::Base
 	has_many :questions, dependent: :destroy
 
 	#== Fields
-	has_attached_file :image
+	has_attached_file :image, default_url: ''
 
 	#== Validations
 	validates_presence_of :name

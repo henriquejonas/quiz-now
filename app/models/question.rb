@@ -4,9 +4,12 @@ class Question < ActiveRecord::Base
   belongs_to :category
 
   has_many :categories, dependent: :destroy
+  has_many :answers,    dependent: :destroy
 
   #== Fields
-  has_attached_file :image
+  has_attached_file :image, default_url: ''
+
+  accepts_nested_attributes_for :answers, allow_destroy: true
 
   #== Validations
   validates_presence_of :question, :category
