@@ -6,4 +6,5 @@ Rails.application.routes.draw do
   #== Active Admin
   ActiveAdmin.routes(self)
 
+  root 'home#index'
 end
