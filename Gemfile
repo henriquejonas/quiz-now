@@ -13,6 +13,7 @@ gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 
+gem 'bcrypt', '~> 3.1.7'
 gem 'activeadmin', '~> 1.0.0.pre1'
 gem 'devise'
 gem 'paperclip', '~> 4.3'
