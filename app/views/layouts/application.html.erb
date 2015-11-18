@@ -1,14 +1,26 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>QuizNow</title>
+  <title><%= head_title %></title>
+  <link rel="icon" href="/favicon.ico">
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
+<%= render 'layouts/navbar' %>
 
-<%= yield %>
+<div class="container">
+  <% if @show_title %>
+      <div class="page-header page-title">
+        <div class="row">
+          <h1 class="navbar-left"><%= @page_title %> <%= content_tag :small, @page_subtitle unless @page_subtitle.nil? %></h1>
+        </div>
+      </div>
+  <% end %>
+  <%= yield %>
+</div>
 
 </body>
 </html>

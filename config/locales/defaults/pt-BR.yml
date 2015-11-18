@@ -1,4 +1,9 @@
 pt-BR:
+  labels:
+    application_title: "QuizNOW"
+  page_titles:
+    home:
+      index: "Mostre o que você sabe sobre engenharia de software"
   messages:
     login_required: "É necessário fazer o login para acessar este conteúdo."
     controllers:

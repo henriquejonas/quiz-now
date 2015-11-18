@@ -1,0 +1,29 @@
+<% if logged_in? %>
+
+<% else %>
+    <% title t('page_titles.home.index') %>
+
+    <div class="row">
+      <div class="col-md-4 text-center">
+        <img src="/images/index_2.jpg" class="img-responsive img-circle"  alt="Teste seus conhecimentos">
+        <h3><b>Teste</b> seus conhecimentos</h3>
+        <p style="text-align: justify">
+          Coloque em prática tudo que você já sabe sobre o assunto.
+        </p>
+      </div>
+      <div class="col-md-4 text-center">
+        <img src="/images/index_1.jpg" class="img-responsive img-circle" alt="Vença seus amigos">
+        <h3><b>Vença</b> seus amigos</h3>
+        <p style="text-align: justify">
+          Aqui você pode competir com seus amigos e descobrir quem é melhor em engenharia de software.
+        </p>
+      </div>
+      <div class="col-md-4 text-center">
+        <img src="/images/index_3.jpg" class="img-responsive img-circle" alt="Aprenda mais">
+        <h3><b>Aprenada</b> muito mais</h3>
+        <p style="text-align: justify">
+          Além de colocar seus conhecimentos em prática você pode melhorar seu aprendizado.
+        </p>
+      </div>
+    </div>
+<% end %>
