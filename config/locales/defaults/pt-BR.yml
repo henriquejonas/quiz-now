@@ -2,13 +2,18 @@ pt-BR:
   actions:
     sign_up_my_user: "Criar meu usuário"
     do_login: "Acesse o QuizNOW"
+    access: "Entrar"
+    sign_up_right_now: "Cadastre-se agora mesmo!"
   labels:
     application_title: "QuizNOW"
+    remember_me: "Permanecer conectado"
   page_titles:
     home:
       index: "Mostre o que você sabe sobre engenharia de software"
     users:
       new: "Novo Usuário"
+    sessions:
+      new: "Entrar"
   messages:
     submit_disable_with: "Aguarde..."
     login_required: "É necessário fazer o login para acessar este conteúdo."
@@ -17,6 +22,8 @@ pt-BR:
         login_successfully: "Seja bem-vindo ao QUIZ NOW."
         invalid_email_or_password: "Email ou senha inválidos."
         logout_successfully: "Você acabou de sair do QUIZ NOW."
+        remember_me: "Você permanecerá conectado por 2 semanas."
+        doesnt_have_an_account: "Ainda não está cadastrado?"
       users:
         user_successfully_created: "Seu usuário foi criado com sucesso. Agora você já pode acessar o QUIZ NOW."
         already_have_an_account: "Já está cadastrado?"

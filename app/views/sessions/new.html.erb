@@ -1,0 +1,54 @@
+<% title t('page_titles.sessions.new') %>
+
+<div class="row">
+  <div class="col-md-8 col-md-offset-2">
+    <div class="well well-sm">
+      Preencha os campos abaixo para acessar o <strong><%= t('labels.application_title') %></strong>.
+    </div>
+
+    <%= form_tag sessions_path, class: 'form-horizontal', role: 'form' do %>
+        <div class="form-group">
+          <%= label_tag :email, User.human_attribute_name(:email), class: 'col-md-2 control-label' %>
+          <div class="col-md-10">
+            <%= email_field_tag :email, params[:email], class: 'form-control input-lg',
+                                placeholder: 'Informe o seu email', autofocus: true %>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <%= label_tag :password, User.human_attribute_name(:password), class: 'col-md-2 control-label' %>
+          <div class="col-md-10">
+            <%= password_field_tag :password, params[:password], class: 'form-control input-lg',
+                                   placeholder: 'Informe a sua senha' %>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="col-md-offset-2 col-md-10">
+            <div class="checkbox">
+              <label>
+                <%= check_box_tag :remember_me, 1, params[:remember_me] %> <%= t('labels.remember_me') %>
+                <%= link_to '?', '#', title: t('messages.controllers.sessions.remember_me'),
+                            data: {toggle: 'tooltip', placement: 'right'} %>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="col-md-offset-2 col-md-10">
+            <%= submit_tag t('actions.access'), data: { disable_with: t('messages.submit_disable_with') }, class: 'btn btn-primary' %>
+          </div>
+        </div>
+    <% end %>
+
+    <div class="row">
+      <div class="col-md-offset-2 col-md-10">
+        <p>
+          <%= t('messages.controllers.sessions.doesnt_have_an_account') %><br/>
+          <%= link_to t('actions.sign_up_right_now'), new_user_path %>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
