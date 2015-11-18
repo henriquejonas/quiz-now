@@ -1,5 +1,6 @@
 pt-BR:
   messages:
+    login_required: "É necessário fazer o login para acessar este conteúdo."
     controllers:
       sessions:
         login_successfully: "Seja bem-vindo ao QUIZ NOW."
