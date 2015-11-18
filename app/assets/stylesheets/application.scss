@@ -40,3 +40,9 @@ body { font-family: 'Open Sans' }
 .navbar-default .navbar-nav > li > a > i {
   display: inline-block;
 }
+
+.alert-container {
+  position: absolute;
+  width: 100%;
+  z-index: 9999;
+}
