@@ -1,7 +1,11 @@
 <% if logged_in? %>
+    <% title t('page_titles.home.index_in') %>
 
+    <% content_for :page_title_extra do %>
+        <%= link_to t('actions.train'), '#', class: 'btn btn-primary', data: {toggle: 'tooltip', placement: 'left', title: 'Treine antes de enfrentar seus amigos.'} %>
+    <% end %>
 <% else %>
-    <% title t('page_titles.home.index') %>
+    <% title t('page_titles.home.index_out') %>
 
     <div class="row">
       <div class="col-md-4 text-center">

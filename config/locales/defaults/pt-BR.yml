@@ -4,12 +4,14 @@ pt-BR:
     do_login: "Acesse o QuizNOW"
     access: "Entrar"
     sign_up_right_now: "Cadastre-se agora mesmo!"
+    train: "Treinar"
   labels:
     application_title: "QuizNOW"
     remember_me: "Permanecer conectado"
   page_titles:
     home:
-      index: "Mostre o que você sabe sobre engenharia de software"
+      index_out: "Mostre o que você sabe sobre engenharia de software"
+      index_in: "Veja seu desempenho nos treinamentos"
     users:
       new: "Novo Usuário"
     sessions:
