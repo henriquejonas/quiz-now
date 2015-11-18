@@ -1,4 +1,6 @@
 pt-BR:
+  custom_validator_messages:
+    email: "não é válido"
   date:
     abbr_day_names:
     - Dom
