@@ -19,13 +19,13 @@ pt-BR:
     login_required: "É necessário fazer o login para acessar este conteúdo."
     controllers:
       sessions:
-        login_successfully: "Seja bem-vindo ao QUIZ NOW."
+        login_successfully: "Seja bem-vindo ao QuizNOW."
         invalid_email_or_password: "Email ou senha inválidos."
-        logout_successfully: "Você acabou de sair do QUIZ NOW."
+        logout_successfully: "Você acabou de sair do QuizNOW."
         remember_me: "Você permanecerá conectado por 2 semanas."
         doesnt_have_an_account: "Ainda não está cadastrado?"
       users:
-        user_successfully_created: "Seu usuário foi criado com sucesso. Agora você já pode acessar o QUIZ NOW."
+        user_successfully_created: "Seu usuário foi criado com sucesso. Agora você já pode acessar o QuizNOW."
         already_have_an_account: "Já está cadastrado?"
   custom_validator_messages:
     email: "não é válido"
