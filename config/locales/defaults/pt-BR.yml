@@ -6,6 +6,9 @@ pt-BR:
         login_successfully: "Seja bem-vindo ao QUIZ NOW."
         invalid_email_or_password: "Email ou senha inválidos."
         logout_successfully: "Você acabou de sair do QUIZ NOW."
+      users:
+        user_successfully_created: "Seu usuário foi criado com sucesso. Agora você já pode acessar o QUIZ NOW."
+
   custom_validator_messages:
     email: "não é válido"
   date:
