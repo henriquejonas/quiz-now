@@ -10,5 +10,7 @@ Rails.application.routes.draw do
   get 'entrar' => 'sessions#new', as: :login
   get 'sair' => 'sessions#destroy', as: :logout
 
+  resources :users, path:'usuarios', only: [:new, :create], path_names: {new: 'novo'}
+
   root 'home#index'
 end
