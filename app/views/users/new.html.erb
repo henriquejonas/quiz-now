@@ -1,0 +1,50 @@
+<% title t('page_titles.users.new') %>
+
+<div class="row">
+  <div class="col-md-8 col-md-offset-2">
+    <div class="well well-sm">
+      Preencha os campos abaixo para se cadastrar no <strong><%= t('labels.application_title') %></strong>.
+    </div>
+
+    <%= form_for @user, html: {class: 'form-horizontal', role: 'form'} do |f| %>
+        <%= f.error_messages %>
+
+        <div class="form-group">
+          <%= f.label :email, class: 'col-md-2 control-label' %>
+          <div class="col-md-10">
+            <%= f.email_field :email, class: 'form-control input-lg', placeholder: 'Informe o seu email',
+                              autofocus: true %>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :password, class: 'col-md-2 control-label' %>
+          <div class="col-md-10">
+            <%= f.password_field :password, class: 'form-control input-lg', placeholder: 'Digite uma senha' %>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :password_confirmation, class: 'col-md-2 control-label sr-only' %>
+          <div class="col-md-10">
+            <%= f.password_field :password_confirmation, class: 'form-control input-lg', placeholder: 'Confirme a senha digitada' %>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="col-md-offset-2 col-md-10">
+            <%= f.submit t('actions.sign_up_my_user'), data: { disable_with: t('messages.submit_disable_with') }, class: 'btn btn-primary' %>
+          </div>
+        </div>
+    <% end %>
+
+    <div class="row">
+      <div class="col-md-offset-2 col-md-10">
+        <p>
+          <%= t('messages.controllers.users.already_have_an_account') %><br/>
+          <%= link_to t('actions.do_login'), login_path %>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

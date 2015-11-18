@@ -1,10 +1,16 @@
 pt-BR:
+  actions:
+    sign_up_my_user: "Criar meu usuário"
+    do_login: "Acesse o QuizNOW"
   labels:
     application_title: "QuizNOW"
   page_titles:
     home:
       index: "Mostre o que você sabe sobre engenharia de software"
+    users:
+      new: "Novo Usuário"
   messages:
+    submit_disable_with: "Aguarde..."
     login_required: "É necessário fazer o login para acessar este conteúdo."
     controllers:
       sessions:
@@ -13,9 +19,17 @@ pt-BR:
         logout_successfully: "Você acabou de sair do QUIZ NOW."
       users:
         user_successfully_created: "Seu usuário foi criado com sucesso. Agora você já pode acessar o QUIZ NOW."
-
+        already_have_an_account: "Já está cadastrado?"
   custom_validator_messages:
     email: "não é válido"
+  activerecord:
+    models:
+      user: "Usuário"
+    attributes:
+      user:
+        name: "Nome"
+        email: "Email"
+        password: "Senha"
   date:
     abbr_day_names:
     - Dom
