@@ -19,4 +19,19 @@ module ApplicationHelper
 
     head_title
   end
+
+  def alert_contextual_css_class(flash_name)
+    case flash_name
+      when :info
+        'alert-info'
+      when :success, :notice
+        'alert-success alert-auto-hide'
+      when :warn, :alert
+        'alert-warning'
+      when :error
+        'alert-danger'
+      else
+        nil
+    end
+  end
 end
