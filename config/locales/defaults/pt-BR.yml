@@ -1,4 +1,10 @@
 pt-BR:
+  messages:
+    controllers:
+      sessions:
+        login_successfully: "Seja bem-vindo ao QUIZ NOW."
+        invalid_email_or_password: "Email ou senha inválidos."
+        logout_successfully: "Você acabou de sair do QUIZ NOW."
   custom_validator_messages:
     email: "não é válido"
   date:
