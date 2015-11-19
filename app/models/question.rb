@@ -3,7 +3,6 @@ class Question < ActiveRecord::Base
 	#== Associations
   belongs_to :category
 
-  has_many :categories, dependent: :destroy
   has_many :answers,    dependent: :destroy
 
   #== Fields

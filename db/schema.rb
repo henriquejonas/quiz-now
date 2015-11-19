@@ -50,6 +50,7 @@ ActiveRecord::Schema.define(version: 20151117222432) do
     t.text     "answer"
     t.integer  "question_id"
     t.integer  "order"
+    t.boolean  "correct"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "image_file_name"

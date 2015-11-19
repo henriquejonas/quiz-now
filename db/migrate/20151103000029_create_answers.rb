@@ -4,6 +4,7 @@ class CreateAnswers < ActiveRecord::Migration
       t.text :answer
       t.references :question, index: true
       t.integer :order
+      t.boolean :correct
 
       t.timestamps
     end

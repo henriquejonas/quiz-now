@@ -1,7 +1,7 @@
 ActiveAdmin.register Answer do
 
 	#== Strong parameters
-  permit_params :question_id, :image, :answer, :order
+  permit_params :question_id, :image, :answer, :order, :correct
 
   index do
     selectable_column
@@ -14,6 +14,7 @@ ActiveAdmin.register Answer do
     column :image do |answer|
       image_tag answer.image.url, :style => 'width: 80px;'
     end
+    column :correct
     actions
   end
 
@@ -27,6 +28,7 @@ ActiveAdmin.register Answer do
         image_tag answer.image.url, :style => 'width: 80px;'
       end
       row :order
+      row :correct
     end
   end
 
@@ -38,6 +40,7 @@ ActiveAdmin.register Answer do
       f.input :answer
       f.input :image, :as => :file, :hint => image_tag(f.object.image.url) 
       f.input :order
+      f.input :correct
     end
     f.actions
   end

@@ -1,7 +1,7 @@
 ActiveAdmin.register Question do
 
 	#== Strong parameters
-  permit_params :question, :image, :reference, :category_id, answers_attributes: [:answer, :image, :order, :id]
+  permit_params :question, :image, :reference, :category_id, answers_attributes: [:answer, :image, :order, :id, :correct]
 
   index do
     selectable_column
@@ -31,6 +31,7 @@ ActiveAdmin.register Question do
   filter :category,  as: :select
 
   form do |f|
+    f.semantic_errors *f.object.errors.keys
     f.inputs "Detalhes da Questão" do
       f.input :question
       f.input :category
@@ -42,6 +43,7 @@ ActiveAdmin.register Question do
         a.input :answer
         a.input :image, :as => :file, :hint => image_tag(a.object.image.url) 
         a.input :order
+        a.input :correct, as: :select, collection: [['Yes', true],['No', false]]
       end
     end
     f.actions

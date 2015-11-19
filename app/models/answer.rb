@@ -12,6 +12,7 @@ class Answer < ActiveRecord::Base
   #== Callbacks
   after_initialize do
   	self.order ||= 1
+    self.correct ||= false
   end
   
 end
@@ -24,6 +25,7 @@ end
 #  answer             :text
 #  question_id        :integer
 #  order              :integer
+#  correct            :boolean
 #  created_at         :datetime
 #  updated_at         :datetime
 #  image_file_name    :string(255)
