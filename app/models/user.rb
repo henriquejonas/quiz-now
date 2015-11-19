@@ -5,6 +5,8 @@ class User < ActiveRecord::Base
   validates :uid, presence: true, if: 'provider.present?'
   validates :password, length: {minimum: 4, maximum: 16}, allow_blank: true
 
+  has_many :trains
+
   def create_omniauth(info)
     self.email = info['info']['email']
     self.provider = info['provider']
