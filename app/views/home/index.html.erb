@@ -4,6 +4,21 @@
     <% content_for :page_title_extra do %>
         <%= link_to t('actions.train'), start_trains_path, class: 'btn btn-primary', data: {toggle: 'tooltip', placement: 'left', title: 'Treine antes de enfrentar seus amigos.'} %>
     <% end %>
+
+    <div class="row">
+      <% if @last_trains.empty? %>
+        <h3 class="text-center">Voce ainda não realizou nenhum treinamento.</h3>
+      <% else %>
+          <div class="col-md-6">
+            <h3>Respostas Corretas</h3>
+            <%= column_chart @last_trains.collect {|train| [train.first, train[1]]} %>
+          </div>
+          <div class="col-md-6">
+            <h3>Tempo de Execução dos Treinamentos</h3>
+            <%= column_chart @last_trains.collect {|train| [train.first, train.last]} %>
+          </div>
+      <% end %>
+    </div>
 <% else %>
     <% title t('page_titles.home.index_out') %>
 
