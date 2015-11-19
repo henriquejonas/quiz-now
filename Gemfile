@@ -20,6 +20,7 @@ gem 'devise'
 gem 'paperclip', '~> 4.3'
 gem 'aws-sdk', '< 2.0'
 gem 'annotate'
+gem 'omniauth-facebook'
 
 group :development do
   gem 'quiet_assets'

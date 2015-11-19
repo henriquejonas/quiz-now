@@ -46,3 +46,16 @@ body { font-family: 'Open Sans' }
   width: 100%;
   z-index: 9999;
 }
+
+.btn.btn-facebook {
+  background-color: #436CE8;
+  color: #fff;
+}
+
+.btn.btn-facebook:hover,
+.btn.btn-facebook.active {
+  background-color: #304EA7;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+}

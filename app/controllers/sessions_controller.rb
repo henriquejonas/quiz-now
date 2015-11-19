@@ -19,6 +19,29 @@ class SessionsController < ApplicationController
     redirect_to root_path, notice: t('messages.controllers.sessions.logout_successfully')
   end
 
+  def create_omniauth
+    user = User.find_by(email: request.env['omniauth.auth']['info']['email'])
+    if user && user.provider == request.env['omniauth.auth']['provider']
+      successful_login(user)
+      redirect_to_target_or_default root_url, notice: t('messages.controllers.sessions.login_successfully')
+    elsif user.nil?
+      user = User.new
+      user.create_omniauth(request.env['omniauth.auth'])
+      if user.save
+        successful_login(user)
+        redirect_to_target_or_default root_url, notice: t('messages.controllers.sessions.login_successfully')
+      else
+        redirect_to root_path, alert: t('messages.controllers.sessions.error_on_login')
+      end
+    else
+      redirect_to login_path(email: request.env['omniauth.auth']['info']['email']), alert: t('messages.controllers.sessions.user_exists')
+    end
+  end
+
+  def rejected_omniauth
+    redirect_to home_index_path, alert: t('messages.controllers.sessions.error_on_login')
+  end
+
   private
 
   def successful_login(user)

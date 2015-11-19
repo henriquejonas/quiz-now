@@ -34,6 +34,8 @@
         <div class="form-group">
           <div class="col-md-offset-2 col-md-10">
             <%= f.submit t('actions.sign_up_my_user'), data: { disable_with: t('messages.submit_disable_with') }, class: 'btn btn-primary' %>
+            ou
+            <%= link_to 'Entrar com Facebook', '/auth/facebook', class: 'btn btn-facebook' %>
           </div>
         </div>
     <% end %>
