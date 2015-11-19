@@ -23,8 +23,7 @@ class TrainsController < LoginRequiredController
   private
 
   def questions_for_train
-    offset = rand(Question.count)
     # No treino serão apresentadas 5 questões
-    Question.offset(offset).limit(5)
+    Question.order("RAND()").limit(5)
   end
 end
