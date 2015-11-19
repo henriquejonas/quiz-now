@@ -1,0 +1,36 @@
+<% title t('page_titles.trains.start') %>
+
+<%= form_for @train, url: finalize_train_path(@train), html: {method: 'post', class: 'form-horizontal', role: 'form'} do |f| %>
+    <% @questions.each_with_index do |question, index| %>
+        <div class="question-container">
+            <div class="row">
+              <div class="col-md-7 col-md-offset-1">
+                <div class="well well-sm">
+                  <h3 style="text-align: justify"><b> Questão <%= index + 1%>: </b><%= question.question %></h3>
+                </div>
+              </div>
+              <div class="col-md-2 col-md-offset-1">
+                <img src="<%= question.category.image.url %>" class="img-responsive" alt="<%= question.category.name %>" />
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6 col-md-offset-2 answer-box">
+                <% question.answers.each do |answer| %>
+                    <h4>
+                        <%= check_box_tag "train[#{question.id.to_s}][]", answer.id.to_s, false, class: 'question-answer' %>
+                        <%= answer.answer %>
+                    </h4>
+                <% end %>
+              </div>
+            </div>
+        </div>
+        <hr />
+    <% end %>
+    <div class="row">
+      <div class="col-md-4 col-md-offset-8">
+        <%= f.submit 'Verificar Respostas', class: 'btn btn-lg btn-success' %>
+        <%= link_to t('actions.cancel'), root_path, class: 'btn btn-lg btn-default'%>
+      </div>
+    </div>
+    <hr />
+<% end %>

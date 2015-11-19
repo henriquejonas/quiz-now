@@ -14,5 +14,14 @@ Rails.application.routes.draw do
 
   resources :users, path:'usuarios', only: [:new, :create], path_names: {new: 'novo'}
 
+  resources :trains, path: 'treino', only: [] do
+    collection do
+      get :start, path: 'novo'
+    end
+    member do
+      post :finalize, path: 'terminar'
+    end
+  end
+
   root 'home#index'
 end

@@ -5,6 +5,7 @@ pt-BR:
     access: "Entrar"
     sign_up_right_now: "Cadastre-se agora mesmo!"
     train: "Treinar"
+    cancel: "Cancelar"
   labels:
     application_title: "QuizNOW"
     remember_me: "Permanecer conectado"
@@ -16,6 +17,8 @@ pt-BR:
       new: "Novo Usuário"
     sessions:
       new: "Entrar"
+    trains:
+      start: "Novo Treino"
   messages:
     submit_disable_with: "Aguarde..."
     login_required: "É necessário fazer o login para acessar este conteúdo."
@@ -31,6 +34,8 @@ pt-BR:
       users:
         user_successfully_created: "Seu usuário foi criado com sucesso. Agora você já pode acessar o QuizNOW."
         already_have_an_account: "Já está cadastrado?"
+      trains:
+        train_successfully_executed: "O treino foi executado com sucesso. Verifique seu desempenho abaixo."
   custom_validator_messages:
     email: "não é válido"
   activerecord:
