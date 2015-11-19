@@ -1,0 +1,20 @@
+# Valores disponíveis em todos os ambientes (development, production, test) --------------------------------------------
+constants:
+
+# Valores disponíveis somente no ambiente de desenvolvimento -----------------------------------------------------------
+development:
+  domain: "localhost:3008"
+  facebook:
+    app_id: "1654350144840639"
+    app_secret: "47a2d7aef1def515a9a9e39e3a702e58"
+
+# Valores disponíveis somente no ambiente de teste ------------------------------------------------------------------
+test:
+  domain: "localhost:3008"
+
+# Valores disponíveis somente no ambiente de produção ------------------------------------------------------------------
+production:
+  domain: "https://quiznoww.herokuapp.com"
+  facebook:
+    app_id: "1654349474840706"
+    app_secret: "5e777e74c1cfc8f8ecbbed6600b4dc01"
