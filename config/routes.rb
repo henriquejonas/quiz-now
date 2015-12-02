@@ -23,5 +23,7 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :profiles, path: 'perfil', path_names: {edit: 'editar'}, only: [:edit, :update]
+
   root 'home#index'
 end

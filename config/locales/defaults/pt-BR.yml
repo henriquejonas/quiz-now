@@ -19,6 +19,8 @@ pt-BR:
       new: "Entrar"
     trains:
       start: "Novo Treino"
+    profiles:
+      edit: "Editar"
   messages:
     submit_disable_with: "Aguarde..."
     login_required: "É necessário fazer o login para acessar este conteúdo."
@@ -36,6 +38,8 @@ pt-BR:
         already_have_an_account: "Já está cadastrado?"
       trains:
         train_successfully_executed: "O treino foi executado com sucesso. Verifique seu desempenho abaixo."
+      profiles:
+        profile_successfully_updated: "Seu perfil foi alterado com sucesso."
   custom_validator_messages:
     email: "não é válido"
   activerecord:
