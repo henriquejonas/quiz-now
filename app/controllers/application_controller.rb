@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
 
   def ranking
     @ranking = User.all.reduce([]) do |ranking, user|
-      ranking << { player: user, points: Game.for_player(user).reduce(0) { |tt, game| tt += game.player_points user } }
+      ranking << { player: user, points: Game.for_player(user).reduce(0) { |tt, game| tt += game.player_points user } } if Game.for_player(user).present?
     end
     @ranking.sort! { |a,b| a[:points] <=> b[:points] }
   end
