@@ -25,6 +25,10 @@ class User < ActiveRecord::Base
   def games
     player_1_games.with_status(:terminated) + player_2_games.with_status(:terminated)
   end
+
+  def public_identification
+    name.blank? ? email[0, email.index('@')] : name
+  end
 end
 
 # == Schema Information

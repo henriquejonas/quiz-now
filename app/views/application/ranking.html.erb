@@ -13,7 +13,7 @@
 			<% @ranking.reverse.each_with_index do |rk, index| %>
 				<tr>
 					<td><%= index + 1 %></td>
-					<td><%= rk[:player].id %> - <%= rk[:player].name %></td>
+					<td><%= rk[:player].id %> - <%= rk[:player].public_identification %></td>
 					<td><%= rk[:points] %></td>
 				</tr>
 			<% end %>
