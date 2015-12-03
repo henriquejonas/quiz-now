@@ -16,7 +16,7 @@ class SessionsController < ApplicationController
 
   def destroy
     current_user.update_attribute :status, :offline unless current_user.nil?
-    cookies.delete :user_id, domain: :all
+    cookies.delete :user_id
     redirect_to root_path, notice: t('messages.controllers.sessions.logout_successfully')
   end
 
@@ -47,9 +47,9 @@ class SessionsController < ApplicationController
 
   def successful_login(user)
     if params[:remember_me] # mantém o usuário conectado por 2 semanas
-      cookies.signed[:user_id] = {value: user.id, expires: 2.weeks.from_now, domain: :all}
+      cookies.signed[:user_id] = {value: user.id, expires: 2.weeks.from_now}
     else # o usuário será desconectado quando fechar o navegador
-      cookies.signed[:user_id] = {value: user.id, domain: :all}
+      cookies.signed[:user_id] = {value: user.id}
     end
     user.status         = :online
     user.last_access_ip = request.remote_ip
