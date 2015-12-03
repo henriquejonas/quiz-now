@@ -1,6 +1,4 @@
-#AdminUser.create!([
-#                      {email: "admin@example.com", encrypted_password: "$2a$10$wwI2Uf0AM5IkUV80GlO9quL.G7bZjJE6AXgYdBqgzdntam2I4MFYC", reset_password_token: nil, reset_password_sent_at: nil, remember_created_at: nil, sign_in_count: 1, current_sign_in_at: "2015-11-19 00:30:52", last_sign_in_at: "2015-11-19 00:30:52", current_sign_in_ip: "127.0.0.1", last_sign_in_ip: "127.0.0.1"}
-#                  ])
+AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password')
 
 Category.create!([
                      {id: 1, name: "CMMI", image_file_name: "cmmi.jpeg", image_content_type: "image/jpeg", image_file_size: 3066, image_updated_at: "2015-11-19 02:12:41"},
@@ -95,6 +93,4 @@ Answer.create!([
                    {answer: "I e II.", question_id: 15, order: 1, correct: true, image_file_name: nil, image_content_type: nil, image_file_size: nil, image_updated_at: nil}
                ])
 
-User.create!([
-                 {email: "email@email.com", name: "Pedro Costa", provider: nil, uid: nil, password_digest: "$2a$10$KDLln.mFG61.izi2ffgynOBbglCqbWV8BAq.xVbt/c4jkHkbiTxcy", last_access_ip: "127.0.0.1", last_access_at: "2015-12-02 21:46:26"}
-             ])
+
