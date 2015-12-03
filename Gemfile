@@ -29,6 +29,7 @@ group :development do
   gem 'spring'
   gem 'better_errors'
 	gem 'binding_of_caller'
+  gem 'seed_dump'
 end
 
 group :doc do
