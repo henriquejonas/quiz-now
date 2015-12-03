@@ -28,7 +28,7 @@ class GamesController < ApplicationController
 			points      = time.to_i * 5;
 			answer      = @game.game_questions.by_question(question_id).by_user(current_user).first
 			correct     = Question.find(question_id).answers.correct.try(:first)
-			is_finished = params[:last].to_i == 2
+			is_finished = params[:last].to_i == 9
 
 			unless Answer.find_by(id: answer_id).blank? 
 				answer.update_attributes(answer_id: answer_id, time: time, points: points)
