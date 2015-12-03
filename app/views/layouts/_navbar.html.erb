@@ -13,6 +13,7 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right">
         <% if logged_in? %>
+          <li><a href="<%= help_path %>">Ajuda</a></li>
           <li><a href="<%= matchmaking_games_path %>" data-no-turbolink='true'>Iniciar Nova Partida</a></li>
           <li><a href="<%= my_points_profile_path current_user %>">Minhas Pontuações</a></li>
           <li><a href="<%= ranking_path %>">Ranking Geral</a></li>

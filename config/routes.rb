@@ -34,6 +34,8 @@ Rails.application.routes.draw do
     end
   end
 
+  resource :help, path: 'ajuda', only: :show
+
   resources :profiles, path: 'perfil', path_names: {edit: 'editar'}, only: [:edit, :update] do 
     member do
       get :my_points, path: 'minhas-pontuacoes'

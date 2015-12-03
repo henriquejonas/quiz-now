@@ -21,6 +21,8 @@ pt-BR:
       start: "Novo Treino"
     profiles:
       edit: "Editar"
+    help:
+      show: "Ajuda"
   messages:
     submit_disable_with: "Aguarde..."
     login_required: "É necessário fazer o login para acessar este conteúdo."
