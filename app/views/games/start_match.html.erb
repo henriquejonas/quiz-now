@@ -1,25 +1,152 @@
-<% @game.questions.each_with_index do |question, index| %>
-  <div class="question-container">
-      <div class="row">
-        <div class="col-md-7 col-md-offset-1">
-          <div class="well well-sm">
-            <h3 style="text-align: justify"><b> Questão <%= index + 1%>: </b><%= question.question %></h3>
-          </div>
-        </div>
-        <div class="col-md-2 col-md-offset-1">
-          <img src="<%= question.category.image.url %>" class="img-responsive" alt="<%= question.category.name %>" />
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-6 col-md-offset-2 answer-box">
-          <% question.answers.each do |answer| %>
-              <h4>
-                  <%= check_box_tag "train[#{question.id.to_s}][]", answer.id.to_s, false, class: 'question-answer' %>
-                  <%= answer.answer %>
-              </h4>
-          <% end %>
-        </div>
-      </div>
+<div class="row col-md-12 hud-players">
+  <div class="col-md-3">
+    <h5>Jogador: <strong><%= @game.player_1.name %></strong></h5>
+    <h5>Pontuação: <strong class="player-1-points">0</strong></h4>
   </div>
-  <hr />
+
+  <div class="col-md-3 col-md-offset-2 timer">
+    
+  </div>
+
+  <div class="col-md-3 col-md-offset-1">
+    <h5>Jogador: <strong><%= @game.player_2.name %></strong></h5>
+    <h5>Pontuação: <strong class="player-2-points">0</strong></h4>
+  </div>
+</div>
+
+<% @game.questions.each_with_index do |question, index| %>
+  <div id="question_<%= question.id %>" class="question-container" data-question-id="<%= question.id %>" data-last-question="<%= index %>">
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3">
+        <div class="well well-sm">
+          <h5 style="text-align: justify"><b> Categoria: </b><%= question.category.name %></h5>
+        </div>
+        <div class="well well-sm">
+          <h4 style="text-align: justify"><b> Questão <%= index + 1%>: </b><%= question.question %></h4>
+        </div>
+        <% unless question.image.url.blank? %>
+          <div class="well well-sm">
+            <img src="<%= question.image.url %>" class="img-responsive" alt="<%= question.category.name %>" />
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3 answer-box">
+        <% question.answers.each do |answer| %>
+            <h4><%= button_tag answer.answer, class: 'btn btn-default btn-answer', data: { answer_id: answer.id, question_id: question.id, last_question: index } %></h4>
+        <% end %>
+      </div>
+    </div>
+    <hr />
+  </div>
 <% end %>
+
+<div class="loading-question">
+  <h3 class="row text-center">Carregando questão...</h3>
+
+  <div class="row loading-view">
+    <div class="windows8">
+      <div class="wBall" id="wBall_1">
+        <div class="wInnerBall"></div>
+      </div>
+      <div class="wBall" id="wBall_2">
+        <div class="wInnerBall"></div>
+      </div>
+      <div class="wBall" id="wBall_3">
+        <div class="wInnerBall"></div>
+      </div>
+      <div class="wBall" id="wBall_4">
+        <div class="wInnerBall"></div>
+      </div>
+      <div class="wBall" id="wBall_5">
+        <div class="wInnerBall"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  
+  $(function() {
+    var timeLeft, timerId, currentIndex = 0;
+    var $counter = $('.counter');
+
+    function countdown() {
+      if (timeLeft == 0) {
+        clearTimeout(timerId);
+        $('.timer').html('<h5 class="text-center">Tempo esgotado</h5>');
+
+
+        var $question = $($('.question-container')[currentIndex]);
+        sendAnswer(-1, $question.attr('data-question-id'), $question.attr('data-last-question'), $($('.question-container')[currentIndex]).find('.answer-box'), 0);
+      } else {
+        if (timeLeft == 10) {
+          $('.timer').html('<div class="countdown"><div class="pie spinner"></div><div class="pie filler"></div><div class="mask"></div></div>');
+        }
+
+        timeLeft--;
+      }
+    }
+
+    function initCountDown() {
+      clearTimeout(timerId);
+      timeLeft = 10;
+      timerId  = setInterval(countdown, 1000);
+    }
+
+    function showQuestion() {
+      $($('.question-container')[currentIndex - 1]).hide();
+      $('.loading-question').show();
+      $('.timer').html("");
+
+      setTimeout(function(){ 
+        $('.loading-question').hide();
+        $($('.question-container')[currentIndex]).show();
+        initCountDown();
+      }, 1000);
+    }
+
+    function sendAnswer(answer, question, last, $parent, time) {
+      $.post( '/partida/responder-questao', { question_id: question, answer_id: answer, time: time, last: last }, function( data ) {
+        console.log(data);
+
+        $('.player-1-points').html(data.game.player_1_points);
+        $('.player-2-points').html(data.game.player_2_points);
+
+          if (data.meta.finished) {
+            window.location.href = '/partida/terminar-partida';
+          } else {
+            if (data.meta.status == 0) {
+              $parent.find("[data-answer-id='" + data.meta.correct_answer_id + "']").addClass('btn-success');
+              $parent.find("[data-answer-id='" + answer + "']").addClass('btn-danger');
+            } else if (data.meta.status == 1) {
+              $parent.find("[data-answer-id='" + data.meta.correct_answer_id + "']").addClass('btn-danger');
+            } else if (data.meta.status == 2) {
+              $parent.find("[data-answer-id='" + answer + "']").addClass('btn-success');
+            }
+          }
+  
+        $parent.find('button').attr('disabled', 'disabled');
+
+        setTimeout(function(){ 
+          currentIndex++;
+          showQuestion();
+        }, 3000);
+      }).fail(function() {
+        clearTimeout(timerId);
+      });
+    }
+
+    showQuestion(0);
+
+    $(document).on('click', '.btn-answer', function(e) {
+      var answ_id = $(this).attr('data-answer-id');
+      var qst_id  = $(this).attr('data-question-id');
+      var last    = $(this).attr('data-last-question');
+      var $parent = $(e.target).closest('.answer-box');
+      sendAnswer(answ_id, qst_id, last, $parent, timeLeft);
+    });
+  });
+
+</script>

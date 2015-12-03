@@ -1,0 +1,31 @@
+<div class="final" style="display: none;">
+	<h3 class="row text-center">A partida acabou! <%= @game.player_points(current_user) > @game.player_points(@oponnent) ? 'Você venceu!!!' : (@game.player_points(current_user) == @game.player_points(@oponnent) ? 'Foi um empate!' : 'Você perdeu!')%></h3>
+
+	<div class="row">
+	  <h3 class="text-center">A sua pontuação foi: <strong class="player-1-points"><%= @game.player_points(current_user) %></strong></h3>
+	</div>
+
+	<div class="row">
+	  <h5>Oponente: <strong><%= @oponnent.name %></strong></h5>
+	  <h5>Pontuação: <strong class="player-1-points"><%= @game.player_points(@oponnent) %></strong></h4>
+	</div>
+
+	<div class="row">
+		<%= link_to 'Voltar para o Início', root_path, class: 'btn btn-primary' %>
+	</div>
+</div>
+
+<div class="wait-for-players" style="display: none">
+	<h3>Aguarde os outros jogadores finalizarem a partida...</h3>
+</div>
+
+<script>
+	
+	<% if @game.player_1.status == :online && @game.player_2.status == :online %>
+		$('.final').show();
+	<% else %>
+		$('.wait-for-players').show();
+		setTimeout(function(){ window.location.href = window.location.href }, 3000);
+	<% end %>
+
+</script>

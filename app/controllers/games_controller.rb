@@ -5,9 +5,10 @@ class GamesController < ApplicationController
 	end
 
 	def start_match
-		@game = Game.current_for_player(current_user).try(:first)
+		@game = Game.current_for_player(current_user).try(:last)
 
-		if @game && @game.status == :waiting_for_players
+		if @game && (@game.status == :waiting_for_players || @game.status == :started)
+			@game.update_attribute :status, :started
 			current_user.update_attribute :status, :playing
 		elsif @game && @game.status == :cancelled
 			current_user.update_attribute :status, :online
@@ -15,7 +16,40 @@ class GamesController < ApplicationController
 		else
 			redirect_to root_path, alert: 'Não foram encontradas partidas a serem jogadas.'
 		end
+	end
 
+	def answer_question
+		@game = Game.current_for_player(current_user).try(:last)
+
+		if @game
+			answer_id   = params[:answer_id]
+			question_id = params[:question_id]
+			time        = params[:time]
+			points      = time.to_i * 5;
+			answer      = @game.game_questions.by_question(question_id).by_user(current_user).first
+			correct     = Question.find(question_id).answers.correct.try(:first)
+			is_finished = params[:last].to_i == 2
+
+			unless Answer.find_by(id: answer_id).blank? 
+				answer.update_attributes(answer_id: answer_id, time: time, points: points)
+				if time == 0 || (!correct.nil? && correct.id != answer_id.to_i)
+					answer.update_attributes(points: 0)
+					render json: Game.find(@game.id), meta: { status: 0, correct_answer_id: correct.try(:id), finished: is_finished }
+				else
+					render json: Game.find(@game.id), meta: { status: 2, finished: is_finished }
+				end
+			else
+				render json: Game.find(@game.id), meta: { status: 1, correct_answer_id: correct.try(:id), finished: is_finished }
+			end
+		end
+	end
+
+	def finalize_match
+		current_user.update_attribute(:status, :online)
+
+		@game     = Game.for_player(current_user).try(:last)
+		@oponnent = @game.player_1 == current_user ? @game.player_2 : @game.player_1
+		@game.finalize
 	end
 
 	def cancel_match

@@ -1,9 +1,33 @@
 @import "spinner";
+@import "countdown";
+
+.question-container {
+	display: none;
+
+	.img-responsive {
+		margin: 0 auto;
+	}
+
+	.answer-box {
+		button {
+			width: 100%;
+			white-space: normal;
+		}
+	}
+}
 
 .loading-view {
 	margin-top: 40px;
 }
 
-.start-game, .not-found-players {
+.start-game, .not-found-players, .loading-question {
 	display: none;
+}
+
+.hud-players {
+  margin-bottom: 30px;
+
+	div.first-player {
+		position: absolute;
+	}
 }

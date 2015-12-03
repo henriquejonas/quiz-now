@@ -9,6 +9,8 @@ class Answer < ActiveRecord::Base
   #== Validations
   validates_presence_of :question, :order, :answer
 
+  scope :correct, -> { where(correct: true).limit(1) }
+
   #== Callbacks
   after_initialize do
   	self.order ||= 1

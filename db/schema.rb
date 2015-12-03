@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151203110123) do
+ActiveRecord::Schema.define(version: 20151203133358) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -78,6 +78,8 @@ ActiveRecord::Schema.define(version: 20151203110123) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "time"
+    t.float    "points",      limit: 24, default: 0.0
   end
 
   add_index "game_questions", ["answer_id"], name: "index_game_questions_on_answer_id", using: :btree

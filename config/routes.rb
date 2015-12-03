@@ -25,10 +25,12 @@ Rails.application.routes.draw do
 
   resources :games, path: 'partida', only: [] do
     collection do
-      get  :matchmaking,  path: 'encontrar-jogador'
-      get  :start_match,  path: 'comecar-partida'
-      post :find_match,   path: 'encontrar-partida'
-      post :cancel_match, path: 'cancelar-partida'
+      get  :matchmaking,     path: 'encontrar-jogador'
+      get  :start_match,     path: 'comecar-partida'
+      get  :finalize_match,  path: 'terminar-partida'
+      post :find_match,      path: 'encontrar-partida'
+      post :cancel_match,    path: 'cancelar-partida'
+      post :answer_question, path: 'responder-questao'
     end
   end
 

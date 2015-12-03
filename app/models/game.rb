@@ -12,6 +12,7 @@ class Game < ActiveRecord::Base
 
   scope :valid_for_player,   ->(player) { with_status(:waiting_for_players).where('player_1_id = ? OR player_2_id = ?', player, player) }
   scope :current_for_player, ->(player) { with_status(:waiting_for_players, :cancelled, :started).where('player_1_id = ? OR player_2_id = ?', player, player) }
+  scope :for_player, 				 ->(player) { where('player_1_id = ? OR player_2_id = ?', player, player) }
 
   def cancel current_user=nil
   	if !current_user.nil? && (self.player_1 == current_user || self.player_2 == current_user)
@@ -20,6 +21,17 @@ class Game < ActiveRecord::Base
 			self.player_2.update_attribute(:status, :online) if self.player_2.status == :waiting
 			save
 		end
+  end
+
+  def finalize current_user=nil
+  	if !current_user.nil? && (self.player_1 == current_user || self.player_2 == current_user)
+			self.status = :terminated
+			save
+		end
+  end
+
+  def player_points player=nil
+  	game_questions.by_user(player).map(&:points).sum
   end
 
 end

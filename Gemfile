@@ -25,6 +25,7 @@ gem 'omniauth-facebook'
 gem 'chartkick' 
 gem 'enumerize'
 gem 'active_model_serializers'
+gem 'compass-rails'
 
 group :development do
   gem 'quiet_assets'

@@ -1,8 +1,13 @@
 class GameQuestion < ActiveRecord::Base
+	
   belongs_to :game
   belongs_to :question
   belongs_to :answer
   belongs_to :user
+
+  scope :by_user, 	  ->(user) 	   { where(user: user) }
+  scope :by_question, ->(question) { where(question_id: question) }
+
 end
 
 # == Schema Information
@@ -16,6 +21,8 @@ end
 #  user_id     :integer
 #  created_at  :datetime
 #  updated_at  :datetime
+#  time        :integer
+#  points      :float(24)        default(0.0)
 #
 # Indexes
 #
