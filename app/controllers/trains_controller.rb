@@ -26,6 +26,7 @@ class TrainsController < LoginRequiredController
 
   def questions_for_train
     # No treino serão apresentadas 5 questões
-    Question.order("RAND()").limit(5)
+    rand_function = Rails.env.production? ? 'random()' : 'rand()'
+    Question.order(rand_function).limit(5)
   end
 end
