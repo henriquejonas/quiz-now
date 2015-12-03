@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  extend Enumerize
+
   has_secure_password
 
   validates :email, presence: true, uniqueness: true, email: true, length: {maximum: 100}
@@ -6,6 +8,11 @@ class User < ActiveRecord::Base
   validates :password, length: {minimum: 4, maximum: 16}, allow_blank: true
 
   has_many :trains
+  has_many :games
+
+  enumerize :status, in: [:online, :offline, :playing, :waiting], default: :offline, predicates: true, scope: true
+
+  scope :not_user, ->(user) { where('id != ?', user.id) }
 
   def create_omniauth(info)
     self.email = info['info']['email']
@@ -29,6 +36,7 @@ end
 #  last_access_at  :datetime
 #  created_at      :datetime
 #  updated_at      :datetime
+#  status          :string(255)
 #
 # Indexes
 #

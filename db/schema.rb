@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151203005509) do
+ActiveRecord::Schema.define(version: 20151203110123) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -71,6 +71,30 @@ ActiveRecord::Schema.define(version: 20151203005509) do
     t.datetime "image_updated_at"
   end
 
+  create_table "game_questions", force: true do |t|
+    t.integer  "game_id"
+    t.integer  "question_id"
+    t.integer  "answer_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "game_questions", ["answer_id"], name: "index_game_questions_on_answer_id", using: :btree
+  add_index "game_questions", ["game_id"], name: "index_game_questions_on_game_id", using: :btree
+  add_index "game_questions", ["question_id"], name: "index_game_questions_on_question_id", using: :btree
+  add_index "game_questions", ["user_id"], name: "index_game_questions_on_user_id", using: :btree
+
+  create_table "games", force: true do |t|
+    t.float    "score_one",   limit: 24
+    t.float    "score_two",   limit: 24
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "player_1_id"
+    t.integer  "player_2_id"
+    t.string   "status"
+  end
+
   create_table "questions", force: true do |t|
     t.text     "question"
     t.text     "reference"
@@ -104,6 +128,7 @@ ActiveRecord::Schema.define(version: 20151203005509) do
     t.datetime "last_access_at"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "status"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

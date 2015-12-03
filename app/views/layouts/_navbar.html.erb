@@ -19,7 +19,7 @@
                 <li><a href="<%= edit_profile_path current_user %>">Editar Perfil</a></li>
                 <li><a href="#">Minhas Pontuações</a></li>
                 <li role="separator" class="divider"></li>
-                <li><a href="#">Iniciar Nova Partida</a></li>
+                <li><a href="<%= matchmaking_games_path %>" data-no-turbolink='true'>Iniciar Nova Partida</a></li>
                 <li role="separator" class="divider"></li>
                 <li><a href="<%= logout_path %>">Sair</a></li>
               </ul>

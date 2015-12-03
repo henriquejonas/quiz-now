@@ -1,0 +1,68 @@
+<div class="search-user">
+	<h3 class="row text-center">Procurando oponente...</h3>
+
+	<div class="row loading-view">
+		<div class="windows8">
+			<div class="wBall" id="wBall_1">
+				<div class="wInnerBall"></div>
+			</div>
+			<div class="wBall" id="wBall_2">
+				<div class="wInnerBall"></div>
+			</div>
+			<div class="wBall" id="wBall_3">
+				<div class="wInnerBall"></div>
+			</div>
+			<div class="wBall" id="wBall_4">
+				<div class="wInnerBall"></div>
+			</div>
+			<div class="wBall" id="wBall_5">
+				<div class="wInnerBall"></div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="start-game text-center">
+	<h3>Oponente Encontrado</h3>
+	<a class="btn btn-primary start-match-button" href="#">Começar a disputa</a>
+	<%= link_to 'Cancelar a disputa', '', method: :post, class: 'btn btn-danger cancel-match-button' %>
+</div>
+
+<div class="not-found-players text-center">
+	<h3>Não foram encontrados jogadores disponíveis</h3>
+	<a class="btn btn-primary" href="<%= matchmaking_games_path %>">Tentar novamente...</a>
+</div>
+
+<script>
+
+	var $search_div    = $('.search-user');
+	var $start_div     = $('.start-game');
+	var $not_found_div = $('.not-found-players');
+	 
+	var timerId = setInterval(call_a_game, 5000);
+	var totalAttempts = 0;
+
+	function call_a_game() {
+			$.post( '/partida/encontrar-partida', function( data ) {
+				if (data.status !== undefined && data.status == 0) {
+					totalAttempts++;
+				} else if (data.game !== undefined) {
+					$search_div.hide();
+					$start_div.show();
+					$start_div.find('.cancel-match-button').attr('href', '/partida/cancelar-partida?game_id=' + data.game.id);
+					$start_div.find('.cancel-match-button').attr('href', '/partida/comecar-partida?game_id=' + data.game.id);
+					clearInterval(timerId);
+				}
+
+				if (totalAttempts == 5) {
+					$search_div.hide();
+					$not_found_div.show();
+					clearInterval(timerId);
+				}
+
+			}).fail(function() {
+				clearInterval(timerId);
+			});		
+	}
+
+</script>

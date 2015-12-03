@@ -1,6 +1,6 @@
-AdminUser.create!([
-                      {email: "admin@example.com", encrypted_password: "$2a$10$wwI2Uf0AM5IkUV80GlO9quL.G7bZjJE6AXgYdBqgzdntam2I4MFYC", reset_password_token: nil, reset_password_sent_at: nil, remember_created_at: nil, sign_in_count: 1, current_sign_in_at: "2015-11-19 00:30:52", last_sign_in_at: "2015-11-19 00:30:52", current_sign_in_ip: "127.0.0.1", last_sign_in_ip: "127.0.0.1"}
-                  ])
+#AdminUser.create!([
+#                      {email: "admin@example.com", encrypted_password: "$2a$10$wwI2Uf0AM5IkUV80GlO9quL.G7bZjJE6AXgYdBqgzdntam2I4MFYC", reset_password_token: nil, reset_password_sent_at: nil, remember_created_at: nil, sign_in_count: 1, current_sign_in_at: "2015-11-19 00:30:52", last_sign_in_at: "2015-11-19 00:30:52", current_sign_in_ip: "127.0.0.1", last_sign_in_ip: "127.0.0.1"}
+#                  ])
 
 Category.create!([
                      {id: 1, name: "CMMI", image_file_name: "cmmi.jpeg", image_content_type: "image/jpeg", image_file_size: 3066, image_updated_at: "2015-11-19 02:12:41"},

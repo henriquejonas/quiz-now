@@ -15,6 +15,7 @@ class SessionsController < ApplicationController
   end
 
   def destroy
+    current_user.update_attribute :status, :offline unless current_user.nil?
     cookies.delete :user_id, domain: :all
     redirect_to root_path, notice: t('messages.controllers.sessions.logout_successfully')
   end
@@ -50,6 +51,7 @@ class SessionsController < ApplicationController
     else # o usuário será desconectado quando fechar o navegador
       cookies.signed[:user_id] = {value: user.id, domain: :all}
     end
+    user.status         = :online
     user.last_access_ip = request.remote_ip
     user.last_access_at = Time.now
     user.save(validate: false)

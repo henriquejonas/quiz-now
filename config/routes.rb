@@ -23,6 +23,15 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :games, path: 'partida', only: [] do
+    collection do
+      get  :matchmaking,  path: 'encontrar-jogador'
+      get  :start_match,  path: 'comecar-partida'
+      post :find_match,   path: 'encontrar-partida'
+      post :cancel_match, path: 'cancelar-partida'
+    end
+  end
+
   resources :profiles, path: 'perfil', path_names: {edit: 'editar'}, only: [:edit, :update]
 
   root 'home#index'
