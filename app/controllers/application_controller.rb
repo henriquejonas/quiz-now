@@ -3,6 +3,13 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
+  def ranking
+    @ranking = User.all.reduce([]) do |ranking, user|
+      ranking << { player: user, points: Game.for_player(user).reduce(0) { |tt, game| tt += game.player_points user } }
+    end
+    @ranking.sort! { |a,b| a[:points] <=> b[:points] }
+  end
+
   private
 
   def current_user

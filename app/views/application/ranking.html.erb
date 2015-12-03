@@ -1,0 +1,24 @@
+<h4 class="text-center">Ranking Geral</h4>
+
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th>Posição</th>
+			<th>Usuário</th>
+			<th>Pontuação</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% unless @ranking.blank? %>
+			<% @ranking.reverse.each_with_index do |rk, index| %>
+				<tr>
+					<td><%= index + 1 %></td>
+					<td><%= rk[:player].id %> - <%= rk[:player].name %></td>
+					<td><%= rk[:points] %></td>
+				</tr>
+			<% end %>
+		<% else %>
+			<tr><td>Não foi possível encontrar o ranking.</td></tr>
+		<% end %>
+	</tbody>
+</table>

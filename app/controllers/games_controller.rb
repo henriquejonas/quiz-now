@@ -49,7 +49,8 @@ class GamesController < ApplicationController
 
 		@game     = Game.for_player(current_user).try(:last)
 		@oponnent = @game.player_1 == current_user ? @game.player_2 : @game.player_1
-		@game.finalize
+
+		@game.update_attribute(:status, :terminated)
 	end
 
 	def cancel_match

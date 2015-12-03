@@ -40,5 +40,7 @@ Rails.application.routes.draw do
     end
   end
 
+  get 'ranking' => 'application#ranking'
+
   root 'home#index'
 end
