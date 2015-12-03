@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
   has_many :trains
   has_many :games
 
-  enumerize :status, in: [:online, :offline, :playing, :waiting], default: :offline, predicates: true, scope: true
+  enumerize :status, in: [:online, :offline, :playing, :waiting, :searching], default: :offline, predicates: true, scope: true
 
   scope :not_user, ->(user) { where('id != ?', user.id) }
 

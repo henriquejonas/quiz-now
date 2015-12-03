@@ -24,7 +24,7 @@
 
 <div class="start-game text-center">
 	<h3>Oponente Encontrado</h3>
-	<a class="btn btn-primary start-match-button" href="#">Começar a disputa</a>
+	<a class="btn btn-primary start-match-button" href="<%= start_match_games_path %>">Começar a disputa!</a>
 	<%= link_to 'Cancelar a disputa', '', method: :post, class: 'btn btn-danger cancel-match-button' %>
 </div>
 
@@ -50,7 +50,6 @@
 					$search_div.hide();
 					$start_div.show();
 					$start_div.find('.cancel-match-button').attr('href', '/partida/cancelar-partida?game_id=' + data.game.id);
-					$start_div.find('.cancel-match-button').attr('href', '/partida/comecar-partida?game_id=' + data.game.id);
 					clearInterval(timerId);
 				}
 

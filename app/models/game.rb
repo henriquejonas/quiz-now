@@ -10,7 +10,8 @@ class Game < ActiveRecord::Base
 
   enumerize :status, in: [:waiting_for_players, :started, :terminated, :cancelled], default: :waiting_for_players, predicates: true, scope: true
 
-  scope :valid_for_player, ->(player) { with_status(:waiting_for_players).where('player_1_id = ? OR player_2_id = ?', player, player) }
+  scope :valid_for_player,   ->(player) { with_status(:waiting_for_players).where('player_1_id = ? OR player_2_id = ?', player, player) }
+  scope :current_for_player, ->(player) { with_status(:waiting_for_players, :cancelled, :started).where('player_1_id = ? OR player_2_id = ?', player, player) }
 
   def cancel current_user=nil
   	if !current_user.nil? && (self.player_1 == current_user || self.player_2 == current_user)

@@ -1,13 +1,19 @@
 class GamesController < ApplicationController
 
 	def matchmaking
+		current_user.update_attribute(:status, :searching) if current_user.status == :online
 	end
 
 	def start_match
-		@game = Game.valid_for_player current_user
+		@game = Game.current_for_player(current_user).try(:first)
 
-		if @game
-			
+		if @game && @game.status == :waiting_for_players
+			current_user.update_attribute :status, :playing
+		elsif @game && @game.status == :cancelled
+			current_user.update_attribute :status, :online
+			redirect_to root_path, alert: 'O oponente saiu da partida.'
+		else
+			redirect_to root_path, alert: 'Não foram encontradas partidas a serem jogadas.'
 		end
 
 	end
@@ -22,7 +28,7 @@ class GamesController < ApplicationController
 
 	def find_match
 		game      = Game.valid_for_player(current_user.id)
-		oponnents = User.with_status(:online).not_user(current_user).order('RAND()').limit(1)
+		oponnents = User.with_status(:searching).not_user(current_user).order('RAND()').limit(1)
 
 		if game.blank? && !oponnents.blank?
 			oponnent = oponnents.first
