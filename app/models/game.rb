@@ -34,6 +34,14 @@ class Game < ActiveRecord::Base
   	game_questions.by_user(player).map(&:points).sum
   end
 
+  def my_oponnent player=nil
+    player == self.player_1 ? self.player_2 : self.player_1
+  end
+
+  def correct_answers player=nil
+    game_questions.by_user(player).map(&:answer).select { |d| !d.nil?}.map(&:correct).select { |d| d }.count
+  end
+
 end
 
 # == Schema Information

@@ -8,7 +8,8 @@ class User < ActiveRecord::Base
   validates :password, length: {minimum: 4, maximum: 16}, allow_blank: true
 
   has_many :trains
-  has_many :games
+  has_many :player_1_games, foreign_key: :player_1_id, class_name: Game
+  has_many :player_2_games, foreign_key: :player_2_id, class_name: Game
 
   enumerize :status, in: [:online, :offline, :playing, :waiting, :searching], default: :offline, predicates: true, scope: true
 
@@ -19,6 +20,10 @@ class User < ActiveRecord::Base
     self.provider = info['provider']
     self.uid = info['uid']
     self.password_digest = BCrypt::Password.create SecureRandom.urlsafe_base64
+  end
+
+  def games
+    player_1_games.with_status(:terminated) + player_2_games.with_status(:terminated)
   end
 end
 

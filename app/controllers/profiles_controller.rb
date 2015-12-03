@@ -1,4 +1,5 @@
 class ProfilesController < LoginRequiredController
+
   def edit
     @profile = current_user
   end

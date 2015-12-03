@@ -34,7 +34,11 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :profiles, path: 'perfil', path_names: {edit: 'editar'}, only: [:edit, :update]
+  resources :profiles, path: 'perfil', path_names: {edit: 'editar'}, only: [:edit, :update] do 
+    member do
+      get :my_points, path: 'minhas-pontuacoes'
+    end
+  end
 
   root 'home#index'
 end

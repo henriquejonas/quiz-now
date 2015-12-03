@@ -1,0 +1,28 @@
+<h4 class="text-center">Minhas Pontuações</h4>
+
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th>Data da Partida</th>
+			<th>Oponente</th>
+			<th>Respostas Corretas</th>
+			<th>Pontuação</th>
+			<th>Pontuação do Oponente</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% unless current_user.games.blank? %>
+			<% current_user.games.each do |match| %>
+				<tr>
+					<td><%= match.created_at.strftime('%d/%m/%Y %H:%M') %></td>
+					<td><%= match.my_oponnent(current_user).name %></td>
+					<td><%= match.correct_answers(current_user) %></td>
+					<td><%= match.player_points(current_user).to_i %></td>
+					<td><%= match.player_points(match.my_oponnent(current_user)).to_i %></td>
+				</tr>
+			<% end %>
+		<% else %>
+			<tr><td>Você ainda não realizou nenhuma partida.</td></tr>
+		<% end %>
+	</tbody>
+</table>
