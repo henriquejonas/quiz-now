@@ -12,8 +12,10 @@ class TrainsController < LoginRequiredController
     @train = Train.find(params[:id])
     @train.ended_at = Time.now
     score = 0
-    params[:train].each do |question, answer|
-      score += 1 if Question.find(question).answers.where(correct: true).first.id.to_s == answer.first
+    if params[:train].present?
+      params[:train].each do |question, answer|
+        score += 1 if Question.find(question).answers.where(correct: true).first.id.to_s == answer.first
+      end
     end
     @train.score = score
     @train.save
