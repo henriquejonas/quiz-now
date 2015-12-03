@@ -62,15 +62,16 @@ class GamesController < ApplicationController
 	end
 
 	def find_match
+		rand_function = Rails.env.production? ? 'random()' : 'rand()'
 		game      = Game.valid_for_player(current_user.id)
-		oponnents = User.with_status(:searching).not_user(current_user).order('RAND()').limit(1)
+		oponnents = User.with_status(:searching).not_user(current_user).order(rand_function).limit(1)
 
 		if game.blank? && !oponnents.blank?
 			oponnent = oponnents.first
 			new_game = Game.new player_1: current_user, player_2: oponnent
 
 			# add questions in a game
-			questions = Question.order('RAND()').limit(10)
+			questions = Question.order(rand_function).limit(10)
 			questions.each do |q|
 				new_game.game_questions << GameQuestion.new(question: q, user: current_user)
 				new_game.game_questions << GameQuestion.new(question: q, user: oponnent)
